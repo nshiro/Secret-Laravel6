@@ -23,6 +23,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // 悪人が登録する際は、入会理由を必須とするルール
+        \Validator::extendImplicit('checkBadGuy', function ($attribute, $value, $parameters, $validator) {
+            if (\Str::endsWith(request('email'), '@bad.guy') && ($value == '')) {
+                return false;
+            }
+
+            return true;
+        }, '悪人の方は、:attributeを必ず入力して下さい');
     }
 }

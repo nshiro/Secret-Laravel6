@@ -18,7 +18,9 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+            $url = ($guard) ? route($guard.'.top'): '/';
+
+            return redirect($url);
         }
 
         return $next($request);

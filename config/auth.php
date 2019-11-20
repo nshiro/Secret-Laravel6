@@ -41,6 +41,18 @@ return [
             'provider' => 'users',
         ],
 
+        // 追加
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+
+        // 追加
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -69,6 +81,12 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+        // 追加
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
         ],
 
         // 'users' => [
